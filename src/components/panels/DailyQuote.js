@@ -18,11 +18,13 @@ export default function DailyQuote({ settings }) {
     useEffect(() => {
         const url = '/api/quote';
         axios.get(url)
-            .then(res => {
-                console.log(res.data.quote.quoteAuthor, res.data.quote.quoteText)
-                setQuote([res.data.quote.quoteAuthor, res.data.quote.quoteText]);
-            })
-            .catch(err => console.log(err));
+        .then(res => {
+            setQuote([res.data.quote.quoteAuthor, res.data.quote.quoteText]);
+        })
+        .catch(err => {
+            console.log(err);
+            setQuote(['Admin', 'Quote machine broke'])
+        });
     }, [])
     return (
         <div style={style} className='daily-quote'>

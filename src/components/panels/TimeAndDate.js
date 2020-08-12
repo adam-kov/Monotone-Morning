@@ -4,7 +4,8 @@ class TimeAndDate extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            date: new Date()
+            date: new Date(),
+            day: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
         }
         this.style = {
             position: 'fixed',
@@ -17,7 +18,7 @@ class TimeAndDate extends Component {
             padding: '0 15px 30px 15px',
             margin: 0,
             color: '#eee',
-            fontSize: '2rem',
+            fontSize: '1.8rem',
         }
     }
     
@@ -36,7 +37,7 @@ class TimeAndDate extends Component {
                 {this.props.settings.showSeconds && <span style={{fontSize: '0.5em'}}>:{('0' + this.state.date.getSeconds()).slice(-2)}</span>}
                 </h1>
                 <div>{this.props.settings.showYear ? this.state.date.toLocaleDateString() 
-                : this.state.date.toLocaleDateString().slice(-8)}</div>
+                : this.state.date.toLocaleDateString().slice(-8)}<br/>{this.state.day[this.state.date.getDay()]}</div>
             </div>
         )
     }

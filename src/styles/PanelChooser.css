@@ -1,0 +1,55 @@
+:root{
+    --blue: #376891;
+}
+.settings-menu-element:hover {
+    background-color: rgba(34, 34, 34, 0.9);
+}
+.settings-menu-element input[type='checkbox'] {
+    background-color: #ccc;
+}
+.settings-menu-element input[type='checkbox']:checked {
+    background-color: red;
+}
+.settings-switch {
+    padding: 0;
+    margin-top: 4px;
+    position: relative;
+    float: right;
+    width: 42px;
+    height: 24px;
+    cursor: pointer;
+}
+.settings-switch input[type='checkbox'] {
+    display: none;
+}
+.settings-slider {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 24px;
+    background-color: #ccc;
+    -webkit-transition: .3s;
+    transition: .3s;
+}
+.settings-slider::before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    bottom: 2px;
+    border-radius: 50%;
+    background-color: white;
+    -webkit-transition: .3s;
+    transition: .3s;
+}
+.settings-switch input[type='checkbox']:checked + .settings-slider {
+    background-color: var(--blue);
+}
+.settings-switch input[type='checkbox']:checked + .settings-slider::before {
+    -webkit-transform: translateX(18px);
+    -ms-transform: translateX(18px);
+    transform: translateX(18px);
+}
