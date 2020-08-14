@@ -1,6 +1,9 @@
 :root{
     --blue: #376891;
 }
+.settings-menu-element {
+    transition-duration: 0.1s;
+}
 .settings-menu-element:hover {
     background-color: rgba(34, 34, 34, 0.9);
 }
@@ -52,4 +55,13 @@
     -webkit-transform: translateX(18px);
     -ms-transform: translateX(18px);
     transform: translateX(18px);
+}
+.settings-reload-button {
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #376891;
+    color: #eee;
+    cursor: pointer;
 }

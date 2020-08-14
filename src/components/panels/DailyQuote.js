@@ -8,7 +8,7 @@ export default function DailyQuote({ settings }) {
         bottom: '3vh',
         left: '3vw',
         maxWidth: '30vw',
-        maxHeight: '30vh',
+        maxHeight: '25vh',
         backgroundColor: 'rgba(34, 34, 34, 0.7)',
         borderRadius: '10px',
         padding: '10px',
