@@ -14,22 +14,47 @@ app.use((req, res, next) => {
 });
 
 app.get('/api/bg', (req, res) => {
-    const category = req.query.category || 111;
+    const category = req.query.categories || 111;
     const purity = req.query.purity || 110;
     const atleast = req.query.atleast || '100x100';
     const resolutions = req.query.resolutions;
     const url = `https://wallhaven.cc/api/v1/search?apikey=
-        ${process.env.BACKGROUND_API_KEY}&category=${category}&purity=${purity}
+        ${process.env.BACKGROUND_API_KEY}&categories=${category}&purity=${purity}
         &${resolutions !== undefined ? 'resolutions=' + resolutions : 'atleast=' + atleast}`;
+    axios.get(url)
+        .then(apiResponse => {
+            res.setHeader('Content-Type', 'application/json');
+            res.send(apiResponse.data.data);
+        })
+        .catch(error => console.log(error));
+    //const apiData = await apiResponse.data.json();
+    //res.setHeader('Content-Type', 'application/json');
+    //res.send(apiResponse.data);
+})
+app.get('/api/quote', (req, res) => {
+    const url = 'https://quote-garden.herokuapp.com/api/v2/quotes/random';
     axios.get(url)
     .then(apiResponse => {
         res.setHeader('Content-Type', 'application/json');
         res.send(apiResponse.data);
     })
     .catch(error => console.log(error));
-    //const apiData = await apiResponse.data.json();
-    //res.setHeader('Content-Type', 'application/json');
-    //res.send(apiResponse.data);
+})
+app.get('/api/weather', (req, res) => {
+    const city = req.query.q || null;
+    const lat = req.query.lat || 48.864716;
+    const lon = req.query.lon || 2.349014;
+    const unit = req.query.units;
+    const url = city ? `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${process.env.WEATHER_API_KEY}` : 
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${unit}&appid=${process.env.WEATHER_API_KEY}`;
+    axios.get(url)
+    .then(apiResponse => {
+        res.setHeader('Content-Type', 'application/json');
+        res.send(apiResponse.data);
+    })
+    .catch(error => {
+        res.send(error);
+    });
 })
 
 app.listen(port, () => console.log('Server running on port ' + port));
