@@ -56,5 +56,18 @@ app.get('/api/weather', (req, res) => {
         res.send(error);
     });
 })
+app.get('/api/currency', (req, res) => {
+    const base = req.query.base || 'EUR';
+    const symbols = req.query.symbols;
+    const url = `https://api.exchangeratesapi.io/latest?base=${base}&symbols=${symbols}`;
+    axios.get(url)
+    .then(apiResponse => {
+        res.setHeader('Content-Type', 'application/json');
+        res.send(apiResponse.data);
+    })
+    .catch(error => {
+        res.send(error);
+    });
+})
 
 app.listen(port, () => console.log('Server running on port ' + port));
