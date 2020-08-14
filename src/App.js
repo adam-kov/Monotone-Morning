@@ -44,7 +44,8 @@ function App() {
     {
       title: 'Currency Rates',
       active: true,
-      show: ['usd', 'eur']
+      base: 'EUR',
+      show: ['USD', 'GBP', 'HUF']
     },
     {
       title: 'Tab Opener',
@@ -59,7 +60,7 @@ function App() {
     current: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/White_flag_of_surrender.svg/255px-White_flag_of_surrender.svg.png',
     options: [],
     updateDaily: true,
-    category: [true, false, true],
+    category: [true, false, false],
     purity: [true, false, false]
   })
   
