@@ -22,13 +22,13 @@ export default function PanelChooser({ settings, setSettings, bgSettings, setBgS
         return arr;
     })
     const moreSettings = [
-        <CurrencyRatesSettings settings={settings} setSettings={setSettings} />,
-        <DailyQuoteSettings settings={settings} setSettings={setSettings} />,
-        <NewsSettings settings={settings} setSettings={setSettings} />,
-        <SearchBarSettings settings={settings} setSettings={setSettings} />,
-        <TabOpenerSettings settings={settings} setSettings={setSettings} />,
         <TimeAndDateSettings settings={settings} setSettings={setSettings} />,
-        <WeatherSettings settings={settings} setSettings={setSettings} />
+        <WeatherSettings settings={settings} setSettings={setSettings} />,
+        <NewsSettings settings={settings} setSettings={setSettings} />,
+        <DailyQuoteSettings settings={settings} setSettings={setSettings} />,
+        <SearchBarSettings settings={settings} setSettings={setSettings} />,
+        <CurrencyRatesSettings settings={settings[5]} setSettings={setSettings} />,
+        <TabOpenerSettings settings={settings} setSettings={setSettings} />,
     ];
     const settingsStyle = {
         position: 'fixed',
@@ -51,6 +51,7 @@ export default function PanelChooser({ settings, setSettings, bgSettings, setBgS
     }
     const menuStyle = {
         position: 'absolute',
+        overflowY: 'scroll',
         height: '100vh',
         width: '400px',
         top: 0,
@@ -76,7 +77,7 @@ export default function PanelChooser({ settings, setSettings, bgSettings, setBgS
             <div style={menuStyle} className='settings-menu'>
                 {/* BACKGROUND SETTINGS */}
                 <div className='settings-menu-element' style={{padding: '5px 10px'}} key={bgSettings.title}>
-                    <span style={{cursor: 'pointer'}} onClick={() => {
+                    <span style={{cursor: 'pointer', lineHeight: '32px'}} onClick={() => {
                         let next = [...moreInfo];
                         next[0] = !next[0];
                         setMoreInfo(next);
@@ -95,7 +96,7 @@ export default function PanelChooser({ settings, setSettings, bgSettings, setBgS
                 {/* EVERY OTHER SETTING */}
                 {settings.map((element, index) => {
                     return (
-                    <div className='settings-menu-element' style={{padding: '5px 10px'}} key={element.title}>
+                    <div className='settings-menu-element' style={{padding: '5px 10px', lineHeight: '32px'}} key={element.title}>
                         <span style={{cursor: 'pointer'}} onClick={() => {              // TITLE
                             let next = [...moreInfo];
                             next[index+1] = !next[index+1];

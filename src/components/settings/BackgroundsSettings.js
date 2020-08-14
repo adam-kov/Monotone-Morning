@@ -9,7 +9,7 @@ export default function BackgroundsSettings({ settings, setSettings }) {
         purity: [...settings.purity]
     })
     const imgStyle = {
-        maxWidth: '175px',
+        maxWidth: '170px',
         margin: '5px 5px',
         cursor: 'pointer',
     }
