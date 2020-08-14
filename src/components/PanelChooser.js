@@ -4,8 +4,15 @@ import '../styles/PanelChooser.css'
 import ArrowIcon from '../icons/Arrow'
 import ArrowDown from '../icons/ArrowDown'
 import BackgroundsSettings from './settings/BackgroundsSettings'
+import CurrencyRatesSettings from './settings/CurrencyRatesSettings'
+import DailyQuoteSettings from './settings/DailyQuoteSettings'
+import NewsSettings from './settings/NewsSettings'
+import SearchBarSettings from './settings/SearchBarSettings'
+import TabOpenerSettings from './settings/TabOpenerSettings'
+import TimeAndDateSettings from './settings/TimeAndDateSettings'
+import WeatherSettings from './settings/WeatherSettings'
 
-export default function PanelChooser({ settings, setSettings }) {
+export default function PanelChooser({ settings, setSettings, bgSettings, setBgSettings }) {
     const [visibility, setVisibility] = useState(false);        // toggle the visibility of the sidemenu
     const [moreInfo, setMoreInfo] = useState(() => {            // toggle the visibility of further settings
         let arr = [];
@@ -14,6 +21,15 @@ export default function PanelChooser({ settings, setSettings }) {
         }
         return arr;
     })
+    const moreSettings = [
+        <CurrencyRatesSettings settings={settings} setSettings={setSettings} />,
+        <DailyQuoteSettings settings={settings} setSettings={setSettings} />,
+        <NewsSettings settings={settings} setSettings={setSettings} />,
+        <SearchBarSettings settings={settings} setSettings={setSettings} />,
+        <TabOpenerSettings settings={settings} setSettings={setSettings} />,
+        <TimeAndDateSettings settings={settings} setSettings={setSettings} />,
+        <WeatherSettings settings={settings} setSettings={setSettings} />
+    ];
     const settingsStyle = {
         position: 'fixed',
         height: '100vh',
@@ -58,33 +74,51 @@ export default function PanelChooser({ settings, setSettings }) {
                 <ArrowIcon toggle={visibility} />
             </div>
             <div style={menuStyle} className='settings-menu'>
+                {/* BACKGROUND SETTINGS */}
+                <div className='settings-menu-element' style={{padding: '5px 10px'}} key={bgSettings.title}>
+                    <span style={{cursor: 'pointer'}} onClick={() => {
+                        let next = [...moreInfo];
+                        next[0] = !next[0];
+                        setMoreInfo(next);
+                    }}>
+                        {bgSettings.title}
+                    </span>
+                    <span style={{float: 'right'}} onClick={() => {
+                        let next = [...moreInfo];
+                        next[0] = !next[0];
+                        setMoreInfo(next);
+                    }}>
+                        <ArrowDown toggle={moreInfo[0]} />
+                    </span>
+                    {moreInfo[0] && <BackgroundsSettings settings={bgSettings} setSettings={setBgSettings} />}
+                </div>
+                {/* EVERY OTHER SETTING */}
                 {settings.map((element, index) => {
                     return (
                     <div className='settings-menu-element' style={{padding: '5px 10px'}} key={element.title}>
-                        <span style={{cursor: 'pointer'}} onClick={() => {
+                        <span style={{cursor: 'pointer'}} onClick={() => {              // TITLE
                             let next = [...moreInfo];
-                            next[index] = !next[index];
+                            next[index+1] = !next[index+1];
                             setMoreInfo(next);
                         }}>
                             {element.title}
                         </span>
-                        <span style={{float: 'right'}} onClick={() => {
+                        <span style={{float: 'right'}} onClick={() => {                 // MORE INFO TOGGLE
                             let next = [...moreInfo];
-                            next[index] = !next[index];
+                            next[index+1] = !next[index+1];
                             setMoreInfo(next);
                         }}>
-                            <ArrowDown toggle={moreInfo[index]} />
+                            <ArrowDown toggle={moreInfo[index+1]} />
                         </span>
-                        {element.title === 'Background' && moreInfo[0] && <BackgroundsSettings settings={settings} setSettings={setSettings} />}
-                        {element.title !== 'Background' && 
                         <label className='settings-switch'>
                             <input type='checkbox' checked={element.active} readOnly />
-                            <span className='settings-slider' onClick={() => {
+                            <span className='settings-slider' onClick={() => {          // PANEL TOGGLE
                                 const next = [...settings];
                                 next[index].active = !next[index].active;
                                 setSettings(next);
                             }}/>
-                        </label>}
+                        </label>
+                        {moreInfo[index+1] && moreSettings[index]}
                     </div>)
                 })}
             </div>

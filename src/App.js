@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PanelChooser from './components/PanelChooser'
 import Backgrounds from './components/panels/Backgrounds'
 import TimeAndDate from './components/panels/TimeAndDate'
+import Weather from './components/panels/Weather'
 import News from './components/panels/News'
 import DailyQuote from './components/panels/DailyQuote'
 import SearchBar from './components/panels/SearchBar'
@@ -9,50 +10,70 @@ import CurrencyRates from './components/panels/CurrencyRates'
 import TabOpener from './components/panels/TabOpener'
 import './App.css';
 // Lazy loading!
-
+ 
 function App() {
-  const [activePanels, setActivePanels] = useState({
-    timeAndDate: true,
-    news: false,
-    dailyQuote: false,
-    searchBar: false,
-    currencyRates: false,
-    tabOpener: false
-  });
-  const [panelSettings, setPanelSettings] = useState({
-    backgrounds: {
-      updateDaily: true,
-      nsfw: false
+  const [panelSettings, setPanelSettings] = useState([
+    {
+      title: 'Time and Date',
+      active: true,
+      showSeconds: true,
+      showYear: false
     },
-    timeAndDate: {
-      showSeconds: true
+    {
+      title: 'Weather Forecast',
+      active: true,
+      unit: 'metric',
+      city: '',
+      lat: null,
+      lon: null
     },
-    news: {},
-    dailyQuote: {
-      from: 'all' // celebrities/philosophers/scientists/all
+    {
+      title: 'News',
+      active: true,
     },
-    searchBar: {
+    {
+      title: 'Quote of the Day',
+      active: true,
+      from: 'all'
+    },
+    {
+      title: 'Search Bar',
+      active: true,
       engine: 'google'
     },
-    currencyRates: {
+    {
+      title: 'Currency Rates',
+      active: true,
       show: ['usd', 'eur']
     },
-    tabOpener: {
+    {
+      title: 'Tab Opener',
+      active: true,
       openedToday: true,
       tabsToOpen: ['https://google.com']
     }
-  });
-
+  ]);
+  const [bgSettings, setBgSettings] = useState({
+    title: 'Background',
+    active: true,
+    current: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/White_flag_of_surrender.svg/255px-White_flag_of_surrender.svg.png',
+    options: [],
+    updateDaily: true,
+    category: [true, false, true],
+    purity: [true, false, false]
+  })
+  
   return (
     <div className="App">
-      {activePanels.timeAndDate && <TimeAndDate settings={panelSettings.timeAndDate} />}
-      {activePanels.news && <News settings={panelSettings.news} />}
-      {activePanels.dailyQuote && <DailyQuote settings={panelSettings.dailyQuote} />}
-      {activePanels.searchBar && <SearchBar settings={panelSettings.searchBar} />}
-      {activePanels.currencyRates && <CurrencyRates settings={panelSettings.currencyRates} />}
-      {activePanels.tabOpener && <TabOpener settings={panelSettings.tabOpener} />}
-      <Backgrounds settings={panelSettings.backgrounds} />
-      <PanelChooser settings={panelSettings} setSettings={setPanelSettings} />
+      {panelSettings[0].active && <TimeAndDate settings={panelSettings[0]} />}
+      {panelSettings[1].active && <Weather settings={panelSettings[1]} setSettings={setPanelSettings} />}
+      {panelSettings[2].active && <News settings={panelSettings[2]} />}
+      {panelSettings[3].active && <DailyQuote settings={panelSettings[3]} />}
+      {panelSettings[4].active && <SearchBar settings={panelSettings[4]} />}
+      {panelSettings[5].active && <CurrencyRates settings={panelSettings[5]} />}
+      {panelSettings[6].active && <TabOpener settings={panelSettings[6]} />}
+      <Backgrounds bgSettings={bgSettings} setBgSettings={setBgSettings} />
+      <PanelChooser settings={panelSettings} setSettings={setPanelSettings} bgSettings={bgSettings} setBgSettings={setBgSettings} />
     </div>
   );
 }
