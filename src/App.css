@@ -7,6 +7,20 @@ html {
 .App {
   text-align: center;
 }
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #aaa;
+}
+::-webkit-scrollbar-thumb {
+  background: #222;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #111;
+}
+/* media queries */
 @media screen and (min-width: 1600px) {
   html {
     font-size: 16px;

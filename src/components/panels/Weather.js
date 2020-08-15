@@ -77,7 +77,7 @@ export default function Weather({ settings, setSettings }) {
                 .then(res => {
                     setWeather({
                         city: res.data.name,
-                        icon: `http://openweathermap.org/img/wn/${res.data.weather[0].icon}@${window.innerHeight > 930 ? 4 : 2}x.png`,
+                        icon: `http://openweathermap.org/img/wn/${res.data.weather[0].icon}@${window.innerHeight > 950 ? 4 : 2}x.png`,
                         description: res.data.weather[0].description,
                         temp: res.data.main.temp,
                         tempMax: res.data.main.temp_max.toFixed(0),
