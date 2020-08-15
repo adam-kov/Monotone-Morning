@@ -39,7 +39,7 @@ function App() {
     {
       title: 'Search Bar',
       active: true,
-      engine: 'google'
+      engine: 'Google'
     },
     {
       title: 'Currency Rates',
