@@ -36,10 +36,12 @@ export default function SearchBar({ settings }) {
 
     return (
         <div className='search-bar' style={style}>
-            <div>Search on {settings.engine}</div>
-            <input type='text' style={inputStyle} className='search-bar-input'
-            value={query} onChange={e => setQuery(e.target.value)} /> <br/>
-            <button style={buttonStyle} onClick={() => {
+            <label htmlFor='search-input'>Search on {settings.engine}</label>
+            <input type='text' name='search-input' style={inputStyle} className='search-bar-input'
+            value={query} onChange={e => setQuery(e.target.value)} onKeyDown={e => {
+                if(e.keyCode === 13) document.getElementById('search-button').click();
+            }} /> <br/>
+            <button id='search-button' style={buttonStyle} onClick={() => {
                 if(query) {
                     setQuery('');
                     if(settings.engine === 'Google') window.open(`https://www.google.com/search?q=${query}`, '_blank');
