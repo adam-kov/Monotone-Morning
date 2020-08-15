@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 export default function Weather({ settings, setSettings }) {
-    const [message, setMessage] = useState('');
+    const [message, setMessage] = useState('Allow geolocation or enter a city name in the settings.');
     const [weather, setWeather] = useState({});
+    const [denied, setDenied] = useState(false);
     const style = {
         position: 'fixed',
         top: '36vh',
@@ -16,42 +17,38 @@ export default function Weather({ settings, setSettings }) {
         color: '#eee',
         fontSize: '1.1rem',
     }
+    const buttonStyle = {
+        marginTop: '20px',
+        padding: '10px 25px',
+        border: 'none',
+        borderRadius: '4px',
+        backgroundColor: '#376891',
+        color: '#eee',
+        cursor: 'pointer',
+    }
 
-    useEffect(() => {
+    function getCoords() {
         if(navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(pos => {
                 localStorage.setItem('lat', pos.coords.latitude);
                 localStorage.setItem('lon', pos.coords.longitude);
             }, err => {
-                console.log(`${err.code}: ${err.message}`)
-                setMessage('Geolocation is denied. Enter a city name in the settings to see the weather.')
+                console.log(`${err.code}: ${err.message}`);
+                setDenied(true);
+                setMessage('Geolocation is denied. Enter a city name in the settings to see the weather.');
             });
             setSettings(prev => {
                 const next = [...prev];
                 next[1] = {...settings, lat: localStorage.getItem('lat'), lon: localStorage.getItem('lon')};
                 return next;
             });
-            const url = `/api/weather?lat=${localStorage.getItem('lat')}&lon=${localStorage.getItem('lon')}&units=${settings.unit}`;
-            localStorage.clear();
-            axios.get(url)
-            .then(res => {
-                setWeather({
-                    city: res.data.name,
-                    icon: `http://openweathermap.org/img/wn/${res.data.weather[0].icon}@${window.innerHeight > 930 ? 4 : 2}x.png`,
-                    description: res.data.weather[0].description,
-                    temp: res.data.main.temp,
-                    tempMax: res.data.main.temp_max.toFixed(0),
-                    tempMin: res.data.main.temp_min.toFixed(0),
-                })
-                if(message !== '') setMessage('')
-            })
-            .catch(err => {
-                console.log(err);
-                setMessage('Sorry, weather forecast is not available right now.');
-            });
-        } else {
-            setMessage('Geolocation is not supported by this browser. Enter a city name in the settings.')
+            return true;
         }
+        return false;
+    }
+
+    useEffect(() => {
+        getCoords();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     
@@ -93,7 +90,7 @@ export default function Weather({ settings, setSettings }) {
                     setMessage('Sorry, weather forecast is not available right now.');
                 });
             } else {
-                setMessage('Geolocation is not supported by this browser. Enter a city name in the settings.')
+                setMessage('Location unknown. Grant access to your location or enter a city name in the settings.')
             }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -101,7 +98,13 @@ export default function Weather({ settings, setSettings }) {
     
     return (
         <div style={style}>
-            {message !== '' && message}
+            {message !== '' && 
+                <div>
+                    <h3>Weather forecast</h3>
+                    <div>{message}</div>
+                    {!denied && <button style={buttonStyle} onClick={getCoords}>Use my location</button>}
+                </div>
+            }
             {message === '' && 
                 <div>
                     <div style={{fontSize: '1.4rem'}}>{weather.city}</div>
