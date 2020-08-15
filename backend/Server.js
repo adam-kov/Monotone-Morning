@@ -30,7 +30,7 @@ app.get('/api/bg', (req, res) => {
     //const apiData = await apiResponse.data.json();
     //res.setHeader('Content-Type', 'application/json');
     //res.send(apiResponse.data);
-})
+});
 app.get('/api/quote', (req, res) => {
     const url = 'https://quote-garden.herokuapp.com/api/v2/quotes/random';
     axios.get(url)
@@ -39,7 +39,7 @@ app.get('/api/quote', (req, res) => {
         res.send(apiResponse.data);
     })
     .catch(error => console.log(error));
-})
+});
 app.get('/api/weather', (req, res) => {
     const city = req.query.q || null;
     const lat = req.query.lat || 48.864716;
@@ -55,7 +55,7 @@ app.get('/api/weather', (req, res) => {
     .catch(error => {
         res.send(error);
     });
-})
+});
 app.get('/api/currency', (req, res) => {
     const base = req.query.base || 'EUR';
     const symbols = req.query.symbols;
@@ -68,6 +68,19 @@ app.get('/api/currency', (req, res) => {
     .catch(error => {
         res.send(error);
     });
-})
+});
+app.get('/api/news', (req, res) => {
+    const country = req.query.country || 'us';
+    const category = req.query.category;
+    const url = `https://newsapi.org/v2/top-headlines?country=${country}${category ? '&category=' + category : ''}&pageSize=10&apiKey=${process.env.NEWS_API_KEY}`
+    axios.get(url)
+    .then(apiResponse => {
+        res.setHeader('Content-Type', 'application/json');
+        res.send(apiResponse.data);
+    })
+    .catch(error => {
+        res.send(error);
+    });
+});
 
 app.listen(port, () => console.log('Server running on port ' + port));

@@ -24,7 +24,7 @@ export default function PanelChooser({ settings, setSettings, bgSettings, setBgS
     const moreSettings = [
         <TimeAndDateSettings settings={settings} setSettings={setSettings} />,
         <WeatherSettings settings={settings} setSettings={setSettings} />,
-        <NewsSettings settings={settings} setSettings={setSettings} />,
+        <NewsSettings settings={settings[2]} setSettings={setSettings} />,
         <DailyQuoteSettings settings={settings} setSettings={setSettings} />,
         <SearchBarSettings settings={settings[4]} setSettings={setSettings} />,
         <CurrencyRatesSettings settings={settings[5]} setSettings={setSettings} />,

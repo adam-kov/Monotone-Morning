@@ -30,6 +30,8 @@ function App() {
     {
       title: 'News',
       active: true,
+      country: 'hu',
+      category: null
     },
     {
       title: 'Quote of the Day',
@@ -45,7 +47,7 @@ function App() {
       title: 'Currency Rates',
       active: true,
       base: 'EUR',
-      show: ['USD', 'GBP', 'HUF']
+      show: ['USD', 'GBP']
     },
     {
       title: 'Tab Opener',
