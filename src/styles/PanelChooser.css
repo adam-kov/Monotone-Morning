@@ -1,6 +1,15 @@
 :root{
     --blue: #376891;
 }
+.settings {
+    backdrop-filter: blur(8px);
+}
+.settings * {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 .settings-menu-element {
     transition-duration: 0.1s;
 }

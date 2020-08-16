@@ -5,24 +5,19 @@ export default function News({ settings }) {
     const [news, setNews] = useState([]);
     const [message, setMessage] = useState('');
     const style = {
-        position: 'fixed',
         bottom: '3vh',
         right: 'calc(3vw + 100px)',
-        width: '30vw',
+        width: '25vw',
         maxWidth: '600px',
         maxHeight: '30vh',
         overflowY: 'scroll',
-        backgroundColor: 'rgba(34, 34, 34, 0.7)',
-        borderRadius: '10px',
-        padding: '10px',
-        color: '#eee',
         fontSize: '1rem',
-        textAlign: 'center',
         scrollBehavior: 'smooth',
     }
     const articleStyle = {
         position: 'relative',
         textAlign: 'left',
+        fontSize: '1.1rem',
         cursor: 'pointer',
         borderRadius: '6px',
         backgroundColor: 'rgba(34, 34, 34, 0.7)',
@@ -45,7 +40,7 @@ export default function News({ settings }) {
     }, [settings]);
     
     return (
-        <div style={style} className='news'>
+        <div style={style} className='news-panel panel'>
             <h2>News</h2>
             {message !== '' && message}
             {message === '' && news.map((element, index) => {

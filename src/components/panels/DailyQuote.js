@@ -4,15 +4,10 @@ import axios from 'axios'
 export default function DailyQuote({ settings }) {
     const [quote, setQuote] = useState([]);
     const style = {
-        position: 'fixed',
         bottom: '3vh',
         left: '3vw',
         maxWidth: '30vw',
         maxHeight: '25vh',
-        backgroundColor: 'rgba(34, 34, 34, 0.7)',
-        borderRadius: '10px',
-        padding: '10px',
-        color: '#eee',
         fontSize: '1.2rem',
     }
     useEffect(() => {
@@ -27,9 +22,9 @@ export default function DailyQuote({ settings }) {
         });
     }, [])
     return (
-        <div style={style} className='daily-quote'>
+        <div style={style} className='daily-quote-panel panel'>
             <div className='quote-text'>{quote[1]}</div>
-            <div className='quote-author'>{quote[0]}</div>
+            <div className='quote-author' style={{fontStyle: 'italic', marginTop: '5px'}}>{quote[0]}</div>
         </div>
     )
 }

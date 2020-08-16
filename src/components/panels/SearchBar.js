@@ -3,19 +3,13 @@ import React, { useState } from 'react'
 export default function SearchBar({ settings }) {
     const [query, setQuery] = useState('');
     const style = {
-        position: 'fixed',
         top: '36vh',
         left: '50%',
         transform: 'translateX(-50%)',
         width: '30vw',
         maxWidth: '600px',
         height: window.innerWidth > 3000 ? '180px' : '150px',
-        backgroundColor: 'rgba(34, 34, 34, 0.7)',
-        borderRadius: '10px',
-        padding: '10px',
-        color: '#eee',
-        fontSize: '1.2rem',
-        textAlign: 'center',
+        fontSize: '1.4rem',
     }
     const inputStyle = {
         position: 'relative',
@@ -35,7 +29,7 @@ export default function SearchBar({ settings }) {
     }
 
     return (
-        <div className='search-bar' style={style}>
+        <div className='search-bar-panel panel' style={style}>
             <label htmlFor='search-input'>Search on {settings.engine}</label>
             <input type='text' name='search-input' style={inputStyle} className='search-bar-input'
             value={query} onChange={e => setQuery(e.target.value)} onKeyDown={e => {

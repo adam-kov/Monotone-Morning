@@ -5,16 +5,10 @@ export default function CurrencyRates({ settings }) {
     const [rates, setRates] = useState({});
     const [error, setError] = useState('');
     const style = {
-        position: 'fixed',
         top: '3vh',
         right: 'calc(3vw + 100px)',
         maxWidth: '30vw',
         maxHeight: '30vh',
-        backgroundColor: 'rgba(34, 34, 34, 0.7)',
-        borderRadius: '10px',
-        padding: '10px',
-        margin: 0,
-        color: '#eee',
         fontSize: '1.2rem',
     }
 
@@ -38,7 +32,7 @@ export default function CurrencyRates({ settings }) {
     }, [settings]);
     
     return (
-        <div style={style}>
+        <div style={style} className='currency-panel panel'>
             {error !== '' && error}
             {error === '' && <>
                 <div style={{marginBottom: '10px'}}>Today 1 <span style={{fontWeight: 'bold'}}>{settings.base}</span> equals:</div>

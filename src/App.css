@@ -2,9 +2,19 @@
   box-sizing: border-box;
 }
 html {
-  font-size: 14px;
+  font-size: 12px;
 }
 .App {
+  text-align: center;
+}
+.panel {
+  position: fixed;
+  background-color: rgba(34, 34, 34, 0.7);
+  backdrop-filter: blur(2px);
+  border-radius: 10px;
+  padding: 10px;
+  margin: 0;
+  color: #eee;
   text-align: center;
 }
 /* scrollbar */
@@ -23,12 +33,12 @@ html {
 /* media queries */
 @media screen and (min-width: 1600px) {
   html {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 @media screen and (min-width: 3000px) {
   html {
-    font-size: 20px;
+    font-size: 18px;
   }
   .search-bar {
     height: 180px;

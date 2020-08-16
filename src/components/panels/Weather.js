@@ -6,15 +6,10 @@ export default function Weather({ settings, setSettings }) {
     const [weather, setWeather] = useState({});
     const [denied, setDenied] = useState(false);
     const style = {
-        position: 'fixed',
         top: '36vh',
         left: '3vw',
         maxWidth: '30vw',
         maxHeight: '35vh',
-        backgroundColor: 'rgba(34, 34, 34, 0.7)',
-        borderRadius: '10px',
-        padding: '10px',
-        color: '#eee',
         fontSize: '1.1rem',
     }
     const buttonStyle = {
@@ -97,7 +92,7 @@ export default function Weather({ settings, setSettings }) {
     }, [settings])
     
     return (
-        <div style={style}>
+        <div style={style} className='weather-panel panel'>
             {message !== '' && 
                 <div>
                     <h3>Weather forecast</h3>
