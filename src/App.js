@@ -30,7 +30,7 @@ function App() {
     {
       title: 'News',
       active: true,
-      country: 'hu',
+      country: 'gb',
       category: 'all'
     },
     {
@@ -52,8 +52,7 @@ function App() {
     {
       title: 'Tab Opener',
       active: true,
-      openedToday: true,
-      tabsToOpen: ['https://google.com']
+      tabs: []
     }
   ]);
   const [bgSettings, setBgSettings] = useState({
@@ -65,7 +64,7 @@ function App() {
     category: [true, false, false],
     purity: [true, false, false]
   })
-  
+  // MIN RES: 900x600
   return (
     <div className="App">
       {panelSettings[0].active && <TimeAndDate settings={panelSettings[0]} />}
