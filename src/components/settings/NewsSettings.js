@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 export default function NewsSettings({ settings, setSettings }) {
     const [newsSetting, setNewsSetting] = useState({...settings});
@@ -66,15 +66,6 @@ export default function NewsSettings({ settings, setSettings }) {
         ['Venezuela', 've']
     ];
 
-    useEffect(() => console.log(settings), [settings]);
-    /*
-    function handleInputChange(value, attribute) {
-        setNewsSetting(prev => {
-            const next = {...prev};
-            next.attribute = 
-        })
-    }
-    */
     return (
         <div style={style}>
             <div>

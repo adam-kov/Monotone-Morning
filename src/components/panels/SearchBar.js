@@ -23,11 +23,6 @@ export default function SearchBar({ settings }) {
         position: 'relative',
         top: '30px',
         padding: '10px 25px',
-        border: 'none',
-        borderRadius: '4px',
-        backgroundColor: '#376891',
-        color: '#eee',
-        cursor: 'pointer',
     }
 
     return (
@@ -37,7 +32,7 @@ export default function SearchBar({ settings }) {
             value={query} onChange={e => setQuery(e.target.value)} onKeyDown={e => {
                 if(e.keyCode === 13) document.getElementById('search-button').click();
             }} /> <br/>
-            <button id='search-button' style={buttonStyle} onClick={() => {
+            <button id='search-button' className='settings-reload-button' style={buttonStyle} onClick={() => {
                 if(query) {
                     setQuery('');
                     if(settings.engine === 'Google') window.open(`https://www.google.com/search?q=${query}`, '_blank');
