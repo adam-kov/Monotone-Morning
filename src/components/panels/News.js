@@ -6,10 +6,10 @@ export default function News({ settings }) {
     const [message, setMessage] = useState('');
     const style = {
         bottom: '3vh',
-        right: 'calc(3vw + 100px)',
-        width: '25vw',
-        maxWidth: '600px',
-        maxHeight: '30vh',
+        right: 'calc(1vw + 100px)',
+        width: '20vw',
+        maxWidth: '800px',
+        maxHeight: '50vh',
         overflowY: 'scroll',
         fontSize: '1rem',
         scrollBehavior: 'smooth',

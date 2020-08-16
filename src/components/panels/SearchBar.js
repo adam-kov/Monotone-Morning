@@ -3,18 +3,20 @@ import React, { useState } from 'react'
 export default function SearchBar({ settings }) {
     const [query, setQuery] = useState('');
     const style = {
-        top: '36vh',
+        top: '20vh',
         left: '50%',
         transform: 'translateX(-50%)',
         width: '30vw',
         maxWidth: '600px',
-        height: window.innerWidth > 3000 ? '180px' : '150px',
+        minHeight: '140px',
+        height: '8vh',
+        maxHeight: '180px',
         fontSize: '1.4rem',
     }
     const inputStyle = {
         position: 'relative',
-        width: '80%',
-        height: '30px',
+        width: '85%',
+        height: '25px',
         top: '20px'
     }
     const buttonStyle = {

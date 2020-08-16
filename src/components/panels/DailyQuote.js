@@ -6,9 +6,10 @@ export default function DailyQuote({ settings }) {
     const style = {
         bottom: '3vh',
         left: '3vw',
-        maxWidth: '30vw',
+        maxWidth: '20vw',
         maxHeight: '25vh',
         fontSize: '1.2rem',
+        overflowY: 'scroll',
     }
     useEffect(() => {
         const url = '/api/quote';

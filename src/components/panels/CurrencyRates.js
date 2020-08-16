@@ -6,7 +6,7 @@ export default function CurrencyRates({ settings }) {
     const [error, setError] = useState('');
     const style = {
         top: '3vh',
-        right: 'calc(3vw + 100px)',
+        right: 'calc(1vw + 100px)',
         maxWidth: '30vw',
         maxHeight: '30vh',
         fontSize: '1.2rem',
