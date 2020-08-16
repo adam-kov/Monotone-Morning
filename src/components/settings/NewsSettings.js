@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 export default function NewsSettings({ settings, setSettings }) {
+    const [newsSetting, setNewsSetting] = useState({...settings});
     const style = {
         fontSize: '1.1rem',
         width: '80%',
@@ -63,18 +64,25 @@ export default function NewsSettings({ settings, setSettings }) {
         ['United Kingdom', 'gb'],
         ['United States', 'us'],
         ['Venezuela', 've']
-    ]
+    ];
+
+    useEffect(() => console.log(settings), [settings]);
+    /*
+    function handleInputChange(value, attribute) {
+        setNewsSetting(prev => {
+            const next = {...prev};
+            next.attribute = 
+        })
+    }
+    */
     return (
         <div style={style}>
             <div>
                 Country
-                <select style={{float: 'right', padding: '4px', marginTop: '2px'}} defaultValue={'United States'} name='news-country' 
+                <select style={{float: 'right', padding: '4px', marginTop: '2px'}} defaultValue={settings.country} name='news-country' 
                 onChange={e => {
-                    setSettings(prev => {
-                        const next = [...prev];
-                        next[2].country = e.target.value;
-                        return next;
-                    })
+                    e.persist();
+                    setNewsSetting(prev => ({...prev, country: e.target.value}));
                 }} >
                     {countries.map(element => <option value={element[1]} key={element[1]} >{element[0]}</option>)}
                 </select>
@@ -83,14 +91,10 @@ export default function NewsSettings({ settings, setSettings }) {
                 Category
                 <select style={{float: 'right', padding: '4px', marginTop: '2px'}} defaultValue={settings.category} name='news-category' 
                 onChange={e => {
-                    setSettings(prev => {
-                        const next = [...prev];
-                        next[2].category = e.target.value;
-                        console.log(next[2]);
-                        return next;
-                    })
+                    e.persist();
+                    setNewsSetting(prev => ({...prev, category: e.target.value}));
                 }} >
-                    <option value={null}>all</option>
+                    <option value='all'>all</option>
                     <option value='business'>business</option>
                     <option value='entertainment'>entertainment</option>
                     <option value='general'>general</option>
@@ -99,6 +103,13 @@ export default function NewsSettings({ settings, setSettings }) {
                     <option value='sports'>sports</option>
                     <option value='technology'>technology</option> 
                 </select>
+            </div>
+            <div style={{textAlign: 'center', paddingTop: '10px', height: '50px'}}>
+                <button className='settings-reload-button' onClick={() => {setSettings(prev => {
+                    const next = [...prev];
+                    next[2] = {...newsSetting};
+                    return next;
+                })}}>Reload</button>
             </div>
         </div>
     )

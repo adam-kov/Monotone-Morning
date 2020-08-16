@@ -27,8 +27,7 @@ export default function News({ settings }) {
         margin: '10px 0',
     }
     useEffect(() => {
-        console.log('Fetching news');
-        const url = `/api/news?country=${settings.country}${settings.category ? '&category=' + settings.category : ''}`;
+        const url = `/api/news?country=${settings.country}${settings.category !== 'all' ? '&category=' + settings.category : ''}`;
         axios.get(url)
         .then(res => {
             setNews([...res.data.articles]);
@@ -48,10 +47,10 @@ export default function News({ settings }) {
                     <table className='news-article' onClick={() => window.open(element.url, '_blank')} style={articleStyle} key={`${element.title}${index}`}>
                         <tbody>
                             <tr>
-                                <td style={{width: '80%'}}>
+                                <td style={{width: '75%'}}>
                                     {element.title}
                                 </td>
-                                <td style={{width: '20%', backgroundImage: `url(${element.urlToImage})`, backgroundSize: 'cover', backgroundPosition: 'center'}} />
+                                <td style={{width: '25%', backgroundImage: `url(${element.urlToImage})`, backgroundSize: 'cover', backgroundPosition: 'center'}} />
                             </tr>
                         </tbody>
                     </table>

@@ -13,6 +13,7 @@ export default function SearchBarSettings({ settings, setSettings }) {
             Search engine
             <select style={{float: 'right', padding: '4px', marginTop: '2px'}} defaultValue={settings.engine} name='searchEngine' id='searchEngine' 
             onChange={e => {
+                e.persist();
                 setSettings(prev => {
                     const next = [...prev];
                     next[4].engine = e.target.value;

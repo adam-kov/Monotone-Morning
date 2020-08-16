@@ -31,7 +31,7 @@ function App() {
       title: 'News',
       active: true,
       country: 'hu',
-      category: null
+      category: 'all'
     },
     {
       title: 'Quote of the Day',
