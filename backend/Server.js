@@ -27,9 +27,6 @@ app.get('/api/bg', (req, res) => {
             res.send(apiResponse.data.data);
         })
         .catch(error => console.log(error));
-    //const apiData = await apiResponse.data.json();
-    //res.setHeader('Content-Type', 'application/json');
-    //res.send(apiResponse.data);
 });
 app.get('/api/quote', (req, res) => {
     const url = 'https://quote-garden.herokuapp.com/api/v2/quotes/random';

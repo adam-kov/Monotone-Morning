@@ -50,7 +50,7 @@ export default function News({ settings, mode }) {
                                 <td style={{width: '75%'}}>
                                     {element.title}
                                 </td>
-                                <td style={{width: '25%', backgroundImage: `url(${element.urlToImage})`, backgroundSize: 'cover', backgroundPosition: 'center'}} />
+                                <td style={{width: '25%', backgroundImage: element.urlToImage ? `url(${element.urlToImage})` : 'none', backgroundSize: 'cover', backgroundPosition: 'center'}} />
                             </tr>
                         </tbody>
                     </table>

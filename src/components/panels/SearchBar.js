@@ -27,8 +27,8 @@ export default function SearchBar({ settings, mode }) {
 
     return (
         <div className={`search-bar-panel ${mode ? 'panel-light' : 'panel'}`} style={style}>
-            <label htmlFor='search-input'>Search on {settings.engine}</label>
-            <input type='text' name='search-input' style={inputStyle} className='search-bar-input'
+            <label htmlFor='search-bar-input'>Search on {settings.engine}</label>
+            <input type='text' name='search-input' style={inputStyle} id='search-bar-input'
             value={query} onChange={e => setQuery(e.target.value)} onKeyDown={e => {
                 if(e.keyCode === 13) document.getElementById('search-button').click();
             }} /> <br/>

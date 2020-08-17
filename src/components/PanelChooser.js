@@ -81,7 +81,7 @@ export default function PanelChooser({ settings, setSettings, bgSettings, setBgS
                 <div style={{position: 'relative', top: 0, width: '100%', height: '20px', textAlign: 'center', fontSize: '0.9rem'}}>Made by Adam Kovacs</div>
                 {/* BUY ME A COFFEE BUTTON */}
                 <div style={{width: '100%', textAlign: 'center'}}>
-                    <a className="bmc-button" target="_blank" href="https://www.buymeacoffee.com/noopper">
+                    <a className="bmc-button" rel="noopener noreferrer" target="_blank" href="https://www.buymeacoffee.com/noopper">
                         <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee" />
                         <span style={{marginLeft: '5px', fontSize: '18px !important'}}>Buy me a coffee</span>
                     </a>

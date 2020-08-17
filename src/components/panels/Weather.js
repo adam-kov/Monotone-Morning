@@ -104,7 +104,7 @@ export default function Weather({ settings, setSettings, mode }) {
         <div style={style} className={`weather-panel ${mode ? 'panel-light' : 'panel'}`}>
             {message !== '' && 
                 <div>
-                    <h3 className='title'>Weather forecast</h3>
+                    <div className='title' style={{fontSize: '1.5rem', fontWeight: 'bold', margin: '10px 0'}}>Weather forecast</div>
                     <div>{message}</div>
                     {!denied && <button style={buttonStyle} onClick={getCoords}>Use my location</button>}
                 </div>
@@ -115,7 +115,7 @@ export default function Weather({ settings, setSettings, mode }) {
                     <img src={weather.icon} alt='Weather icon' style={{marginTop: '-25px'}} />
                     <div style={{marginTop: '-25px'}}>
                         <div>{weather.description}</div>
-                        <h3>{weather.temp}{settings.unit === 'metric' ? '°C' : '°F'}</h3>
+                        <div style={{fontSize: '1.5rem', fontWeight: 'bold', margin: '10px 0'}}>{weather.temp}{settings.unit === 'metric' ? '°C' : '°F'}</div>
                         <div>
                             <span style={{padding: '0 10px'}}>min: {weather.tempMin}{settings.unit === 'metric' ? '°C' : '°F'}</span>
                             <span style={{padding: '0 10px'}}>max: {weather.tempMax}{settings.unit === 'metric' ? '°C' : '°F'}</span>
