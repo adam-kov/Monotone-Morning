@@ -22,21 +22,30 @@ export default function Weather({ settings, setSettings, mode }) {
         cursor: 'pointer',
     }
 
-    function getCoords() {
+    async function getCoords() {
         if(navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(pos => {
-                localStorage.setItem('lat', pos.coords.latitude);
-                localStorage.setItem('lon', pos.coords.longitude);
-            }, err => {
-                console.log(`${err.code}: ${err.message}`);
-                setDenied(true);
-                setMessage('Geolocation is denied. Enter a city name in the settings to see the weather.');
+            new Promise((res, rej) => {
+                navigator.geolocation.getCurrentPosition(pos => {
+                    sessionStorage.setItem('lat', pos.coords.latitude.toFixed(3));
+                    sessionStorage.setItem('lon', pos.coords.longitude.toFixed(3));
+                    res();
+                }, err => {
+                    console.log(`${err.code}: ${err.message}`);
+                    setDenied(true);
+                    setMessage('Geolocation is denied. Enter a city name in the settings to see the weather.');
+                    rej();
+                })
+            }).then(() => {
+                setSettings(prev => {
+                    const next = [...prev];
+                    next[1] = {...settings, lat: sessionStorage.getItem('lat'), lon: sessionStorage.getItem('lon')};
+                    return next;
+                });
+                sessionStorage.removeItem('lat');
+                sessionStorage.removeItem('lon');
             });
-            setSettings(prev => {
-                const next = [...prev];
-                next[1] = {...settings, lat: localStorage.getItem('lat'), lon: localStorage.getItem('lon')};
-                return next;
-            });
+            sessionStorage.removeItem('lat');
+            sessionStorage.removeItem('lon');
             return true;
         }
         return false;
@@ -95,14 +104,14 @@ export default function Weather({ settings, setSettings, mode }) {
         <div style={style} className={`weather-panel ${mode ? 'panel-light' : 'panel'}`}>
             {message !== '' && 
                 <div>
-                    <h3>Weather forecast</h3>
+                    <h3 className='title'>Weather forecast</h3>
                     <div>{message}</div>
                     {!denied && <button style={buttonStyle} onClick={getCoords}>Use my location</button>}
                 </div>
             }
             {message === '' && 
                 <div>
-                    <div style={{fontSize: '1.4rem'}}>{weather.city}</div>
+                    <div style={{fontSize: '1.4rem'}} className='title'>{weather.city}</div>
                     <img src={weather.icon} alt='Weather icon' style={{marginTop: '-25px'}} />
                     <div style={{marginTop: '-25px'}}>
                         <div>{weather.description}</div>

@@ -59,7 +59,7 @@ export default function Backgrounds({ bgSettings, setBgSettings }) {
                 let obj = { thumb: i.thumbs.small, path: i.path }
                 arr.push(obj);
             }
-            setBgSettings(prev => ({...prev, current: data[0].path, options: arr}));
+            setBgSettings(prev => ({...prev, options: arr}));
         })
         .catch(err => console.log(err));
         // eslint-disable-next-line react-hooks/exhaustive-deps
