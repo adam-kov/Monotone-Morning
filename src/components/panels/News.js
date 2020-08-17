@@ -40,7 +40,7 @@ export default function News({ settings, mode }) {
     
     return (
         <div style={style} className={`news-panel ${mode ? 'panel-light' : 'panel'}`}>
-            <h2>News</h2>
+            <h2 className='title'>News</h2>
             {message !== '' && message}
             {message === '' && news.map((element, index) => {
                 return (

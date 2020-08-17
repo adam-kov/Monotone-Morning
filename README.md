@@ -11,5 +11,6 @@ APIs used:
 * Weather: https://openweathermap.org
 * News: https://newsapi.org/
 
-
 Some of the endpoints have request limits, so please use the website accordingly.
+
+Icons are from https://feathericons.com/

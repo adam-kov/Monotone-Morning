@@ -35,7 +35,7 @@ export default function CurrencyRates({ settings, mode }) {
         <div style={style} className={`currency-panel ${mode ? 'panel-light' : 'panel'}`}>
             {error !== '' && error}
             {error === '' && <>
-                <div style={{marginBottom: '10px'}}>Today 1 <span style={{fontWeight: 'bold'}}>{settings.base}</span> equals:</div>
+                <div style={{marginBottom: '10px'}} className='title'>Today 1 <span style={{fontWeight: 'bold'}}>{settings.base}</span> equals:</div>
                 {settings.show.map((element, index) => {
                     return <div style={{padding: '3px'}} key={element}>{rates[settings.show[index]]} <span style={{fontWeight: 'bold'}}>{element}</span></div>
                 })}

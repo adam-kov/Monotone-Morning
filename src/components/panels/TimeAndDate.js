@@ -28,7 +28,7 @@ class TimeAndDate extends Component {
     render() {
         return (
             <div style={this.style} className={`time-date-panel ${this.props.mode ? 'panel-light' : 'panel'}`}>
-                <h1>{('0' + this.state.date.getHours()).slice(-2)}:{('0' + this.state.date.getMinutes()).slice(-2)}
+                <h1 className='title'>{('0' + this.state.date.getHours()).slice(-2)}:{('0' + this.state.date.getMinutes()).slice(-2)}
                 {this.props.settings.showSeconds && <span style={{fontSize: '0.5em'}}>:{('0' + this.state.date.getSeconds()).slice(-2)}</span>}
                 </h1>
                 <div>{this.props.settings.showYear ? this.state.date.toLocaleDateString() 

@@ -1,11 +1,15 @@
 * {
   box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
 }
 html {
   font-size: 12px;
 }
 .App {
   text-align: center;
+}
+.title {
+  font-family: 'Roboto', sans-serif;
 }
 .panel {
   position: fixed;
@@ -33,7 +37,7 @@ html {
 .tab-light {
   background-color: rgba(238, 238, 238, 0.6);
 }
-.tab:hover, .news-article:hover {
+.tab:hover, .tab-light:hover, .news-article:hover {
   filter: contrast(1.2);
 }
 /* scrollbar */

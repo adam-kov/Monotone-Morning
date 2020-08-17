@@ -136,3 +136,32 @@
 .settings-remove-button:hover {
     filter: contrast(1.5);
 }
+/* BUY ME A COFFEE BUTTON */
+.bmc-button img {
+    height: 30px !important;
+    width: 31px !important;
+    margin-bottom: 1px !important;
+    box-shadow: none !important;
+    border: none !important;
+    vertical-align: middle !important;
+}
+.bmc-button{
+    padding: 8px 12px 5px 8px !important;
+    line-height: 30px !important;
+    height: 46px !important;
+    text-decoration: none !important;
+    display:inline-flex !important;
+    color:#eee !important;
+    background-color: var(--blue) !important;
+    border-radius: 8px !important;
+    border: 1px solid transparent !important;
+    font-size: 16px !important;
+    letter-spacing:-0.08px !important;
+    margin: 0 auto !important;
+    font-family:'Lato', sans-serif !important;
+    -webkit-box-sizing: border-box !important;
+    box-sizing: border-box !important;
+}
+.bmc-button:hover, .bmc-button:active, .bmc-button:focus {
+    filter: contrast(1.5);
+}
