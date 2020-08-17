@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
-export default function News({ settings }) {
+export default function News({ settings, mode }) {
     const [news, setNews] = useState([]);
     const [message, setMessage] = useState('');
     const style = {
@@ -20,7 +20,7 @@ export default function News({ settings }) {
         fontSize: '1.1rem',
         cursor: 'pointer',
         borderRadius: '6px',
-        backgroundColor: 'rgba(34, 34, 34, 0.7)',
+        backgroundColor: mode ? 'rgba(238, 238, 238, 0.7)' : 'rgba(34, 34, 34, 0.7)',
         width: '100%',
         minHeight: '100px',
         padding: '5px',
@@ -39,7 +39,7 @@ export default function News({ settings }) {
     }, [settings]);
     
     return (
-        <div style={style} className='news-panel panel'>
+        <div style={style} className={`news-panel ${mode ? 'panel-light' : 'panel'}`}>
             <h2>News</h2>
             {message !== '' && message}
             {message === '' && news.map((element, index) => {

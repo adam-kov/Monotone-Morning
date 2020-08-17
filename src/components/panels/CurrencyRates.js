@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
-export default function CurrencyRates({ settings }) {
+export default function CurrencyRates({ settings, mode }) {
     const [rates, setRates] = useState({});
     const [error, setError] = useState('');
     const style = {
@@ -32,7 +32,7 @@ export default function CurrencyRates({ settings }) {
     }, [settings]);
     
     return (
-        <div style={style} className='currency-panel panel'>
+        <div style={style} className={`currency-panel ${mode ? 'panel-light' : 'panel'}`}>
             {error !== '' && error}
             {error === '' && <>
                 <div style={{marginBottom: '10px'}}>Today 1 <span style={{fontWeight: 'bold'}}>{settings.base}</span> equals:</div>

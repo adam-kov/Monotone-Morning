@@ -12,6 +12,7 @@ import './App.css';
 // Lazy loading!
  
 function App() {
+  const [lightMode, setLightMode] = useState(false);
   const [panelSettings, setPanelSettings] = useState([
     {
       title: 'Time and Date',
@@ -67,15 +68,15 @@ function App() {
   // MIN RES: 900x600
   return (
     <div className="App">
-      {panelSettings[0].active && <TimeAndDate settings={panelSettings[0]} />}
-      {panelSettings[1].active && <Weather settings={panelSettings[1]} setSettings={setPanelSettings} />}
-      {panelSettings[2].active && <News settings={panelSettings[2]} />}
-      {panelSettings[3].active && <DailyQuote settings={panelSettings[3]} />}
-      {panelSettings[4].active && <SearchBar settings={panelSettings[4]} />}
-      {panelSettings[5].active && <CurrencyRates settings={panelSettings[5]} />}
-      {panelSettings[6].active && <TabOpener settings={panelSettings[6]} />}
+      {panelSettings[0].active && <TimeAndDate settings={panelSettings[0]} mode={lightMode} />}
+      {panelSettings[1].active && <Weather settings={panelSettings[1]} setSettings={setPanelSettings} mode={lightMode} />}
+      {panelSettings[2].active && <News settings={panelSettings[2]} mode={lightMode} />}
+      {panelSettings[3].active && <DailyQuote settings={panelSettings[3]} mode={lightMode} />}
+      {panelSettings[4].active && <SearchBar settings={panelSettings[4]} mode={lightMode} />}
+      {panelSettings[5].active && <CurrencyRates settings={panelSettings[5]} mode={lightMode} />}
+      {panelSettings[6].active && <TabOpener settings={panelSettings[6]} mode={lightMode} />}
       <Backgrounds bgSettings={bgSettings} setBgSettings={setBgSettings} />
-      <PanelChooser settings={panelSettings} setSettings={setPanelSettings} bgSettings={bgSettings} setBgSettings={setBgSettings} />
+      <PanelChooser settings={panelSettings} setSettings={setPanelSettings} bgSettings={bgSettings} setBgSettings={setBgSettings} mode={lightMode} setMode={setLightMode} />
     </div>
   );
 }

@@ -14,7 +14,7 @@ function ArrowIcon({ toggle }) {
             width="40"
             height="40"
             fill="none"
-            stroke="#eee"
+            stroke="currentColor"
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth="2"

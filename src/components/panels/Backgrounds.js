@@ -7,7 +7,6 @@ export default function Backgrounds({ bgSettings, setBgSettings }) {
     const style = {
         position: 'fixed',
         backgroundImage: `url(${bgSettings.current})`,
-        //backgroundSize: `${window.innerWidth}px ${window.innerHeight}px`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         top: 0,

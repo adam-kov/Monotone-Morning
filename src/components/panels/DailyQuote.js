@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
-export default function DailyQuote({ settings }) {
+export default function DailyQuote({ settings, mode }) {
     const [quote, setQuote] = useState([]);
     const style = {
         bottom: '3vh',
@@ -23,7 +23,7 @@ export default function DailyQuote({ settings }) {
         });
     }, [])
     return (
-        <div style={style} className='daily-quote-panel panel'>
+        <div style={style} className={`daily-quote-panel ${mode ? 'panel-light' : 'panel'}`}>
             <div className='quote-text'>{quote[1]}</div>
             <div className='quote-author' style={{fontStyle: 'italic', marginTop: '5px'}}>{quote[0]}</div>
         </div>

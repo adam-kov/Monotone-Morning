@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function SearchBar({ settings }) {
+export default function SearchBar({ settings, mode }) {
     const [query, setQuery] = useState('');
     const style = {
         top: '20vh',
@@ -26,7 +26,7 @@ export default function SearchBar({ settings }) {
     }
 
     return (
-        <div className='search-bar-panel panel' style={style}>
+        <div className={`search-bar-panel ${mode ? 'panel-light' : 'panel'}`} style={style}>
             <label htmlFor='search-input'>Search on {settings.engine}</label>
             <input type='text' name='search-input' style={inputStyle} className='search-bar-input'
             value={query} onChange={e => setQuery(e.target.value)} onKeyDown={e => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
-export default function Weather({ settings, setSettings }) {
+export default function Weather({ settings, setSettings, mode }) {
     const [message, setMessage] = useState('Allow geolocation or enter a city name in the settings.');
     const [weather, setWeather] = useState({});
     const [denied, setDenied] = useState(false);
@@ -92,7 +92,7 @@ export default function Weather({ settings, setSettings }) {
     }, [settings])
     
     return (
-        <div style={style} className='weather-panel panel'>
+        <div style={style} className={`weather-panel ${mode ? 'panel-light' : 'panel'}`}>
             {message !== '' && 
                 <div>
                     <h3>Weather forecast</h3>
