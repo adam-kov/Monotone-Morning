@@ -74,7 +74,7 @@ function App() {
         {
           title: 'Background',
           active: true,
-          current: 'https://w.wallhaven.cc/full/nm/wallhaven-nmg7vy.jpg',
+          current: 'https://i.imgur.com/nsXobe4.jpg',
           options: [],
           updateDaily: true,
           category: [true, false, false],
